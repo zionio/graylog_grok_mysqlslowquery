@@ -1,0 +1,15 @@
+{
+  "name":"mysqlslowquerylog",
+  "description":"MySQL Grok pattern for standard mysql slow query log format.\ni.e.:\n# Time: 2016-10-05T12:14:29.634170+01:00\n# User@Host: user1[user1] @ localhost []  Id: 222521\n# Query_time: 12.000243  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0\nSET timestamp=1475662469;\nselect sleep(12);\n",
+  "category":"Grok",
+  "inputs":[],
+  "streams":[],
+  "outputs":[],
+  "dashboards":[],
+  "grok_patterns":[
+    {
+      "name":"MYSQLSLOWQUERYLOG",
+      "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_clienthost}) \\[(?:%{DATA:mysql_clientip}\\]) %{GREEDYDATA} Query_time: %{NUMBER:mysql_querytime}(?:%{SPACE})Lock_time: %{NUMBER:mysql_locktime}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_rowssent}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_rowsexamined}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_timestamp}\\;"
+    }
+  ]
+}
