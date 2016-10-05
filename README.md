@@ -8,8 +8,9 @@
       "name":"MYSQLSLOWQUERYLOG",
       "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_clienthost}) \\[(?:%{DATA:mysql_clientip}\\]) %{GREEDYDATA} Query_time: %{NUMBER:mysql_querytime}(?:%{SPACE})Lock_time: %{NUMBER:mysql_locktime}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_rowssent}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_rowsexamined}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_timestamp}\\;"
 
-
 i.e.:
+
+**message**
 
     # Time: 2016-10-05T12:14:29.634170+01:00
     # User@Host: user1[user1] @ localhost [127.0.0.1]  Id: 222521
@@ -17,18 +18,14 @@ i.e.:
     SET timestamp=1475662469;
     select sleep(12);
 
-**mysql_clienthost:** localhost
+**fields**
 
-**mysql_clientip:** 127.0.0.1
+    mysql_clienthost: localhost
+    mysql_clientip: 127.0.0.1
+    mysql_clientuser: user1
+    mysql_locktime: 0.000000
+    mysql_querytime: 12.000243
+    mysql_rowsexamined: 0
+    mysql_rowssent: 1
+    mysql_timestamp: 1475662469
 
-**mysql_clientuser:** user1
-
-**mysql_locktime:** 0.000000
-
-**mysql_querytime:** 12.000243
-
-**mysql_rowsexamined:** 0
-
-**mysql_rowssent:** 1
-
-**mysql_timestamp:** 1475662469
