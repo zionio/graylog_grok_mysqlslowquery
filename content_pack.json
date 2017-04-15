@@ -1,5 +1,5 @@
 {
-  "name":"MySQL Slow Query Log GROK pattern for Graylog",
+  "name":"MySQL Slow Query Log GROK pattern for Graylog (@zionio 2016)",
   "description":"Graylog Grok pattern for standard MySQL (default) slow query log format.",
   "category":"Grok",
   "inputs":[],
