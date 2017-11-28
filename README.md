@@ -8,7 +8,7 @@ Pattern
 -------
 
     "name":"MYSQLSLOWQUERYLOG",
-    "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_clienthost}) \\[(?:%{DATA:mysql_clientip}\\]) %{GREEDYDATA} Query_time: %{NUMBER:mysql_querytime:float}(?:%{SPACE})Lock_time: %{NUMBER:mysql_locktime:float}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_rowssent:int}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_rowsexamined:int}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_timestamp}\\;"
+    "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_slow_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_slow_clienthost}) \\[(?:%{DATA:mysql_slow_clientip}\\])%{SPACE}Id:%{SPACE}%{DATA:mysql_slow_id}(\\r|\\n)%{GREEDYDATA}Query_time: %{NUMBER:mysql_slow_querytime:float}(?:%{SPACE})Lock_time: %{NUMBER:mysql_slow_locktime:float}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_slow_rowssent:int}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_slow_rowsexamined:int}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_slow_timestamp}\\;"
 
 Example message
 ---------------
@@ -22,14 +22,15 @@ Example message
 Fields
 ------
 
-    mysql_clienthost: localhost
-    mysql_clientip: 127.0.0.1
-    mysql_clientuser: user1
-    mysql_locktime: 0.000000
-    mysql_querytime: 12.000243
-    mysql_rowsexamined: 0
-    mysql_rowssent: 1
-    mysql_timestamp: 1475662469
+    mysql_slow_clienthost: localhost
+    mysql_slow_clientip: 127.0.0.1
+    mysql_slow_clientuser: user1
+    mysql_slow_locktime: 0.000000
+    mysql_slow_id: 222521
+    mysql_slow_querytime: 12.000243
+    mysql_slow_rowsexamined: 0
+    mysql_slow_rowssent: 1
+    mysql_slow_timestamp: 1475662469
 
 Installation
 ------------

@@ -9,7 +9,7 @@
   "grok_patterns":[
     {
       "name":"MYSQLSLOWQUERYLOG",
-      "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_clienthost}) \\[(?:%{DATA:mysql_clientip}\\]) %{GREEDYDATA} Query_time: %{NUMBER:mysql_querytime:float}(?:%{SPACE})Lock_time: %{NUMBER:mysql_locktime:float}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_rowssent:int}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_rowsexamined:int}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_timestamp}\\;"
+      "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_slow_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_slow_clienthost}) \\[(?:%{DATA:mysql_slow_clientip}\\])%{SPACE}Id:%{SPACE}%{DATA:mysql_slow_id}(\\r|\\n)%{GREEDYDATA}Query_time: %{NUMBER:mysql_slow_querytime:float}(?:%{SPACE})Lock_time: %{NUMBER:mysql_slow_locktime:float}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_slow_rowssent:int}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_slow_rowsexamined:int}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_slow_timestamp}\\;"
     }
   ]
 }
