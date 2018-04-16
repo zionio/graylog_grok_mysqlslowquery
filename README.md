@@ -37,7 +37,7 @@ Input
 
     A way to grab log lines: **Graylog Collector Sidecar** with Beats (Filebeat)
 
-    [![screen2](http://imgbox.com/MqSjIBks)](https://images2.imgbox.com/ca/b1/MqSjIBks_o.png)
+[![screen2](http://imgbox.com/MqSjIBks)](https://images2.imgbox.com/ca/b1/MqSjIBks_o.png)
 
 
 Installation
