@@ -35,7 +35,7 @@ Fields
 Input
 -----
 
-    A way to grab log lines: **Graylog Collector Sidecar** with Beats (Filebeat)
+A way to grab log lines: **Graylog Collector Sidecar** with Beats (Filebeat)
 
 [![screen2](https://images2.imgbox.com/ca/b1/MqSjIBks_o.png)](https://images2.imgbox.com/ca/b1/MqSjIBks_o.png)
 
