@@ -1,15 +1,283 @@
 {
-  "name":"MySQL Slow Query Log GROK pattern for Graylog (@zionio 2016)",
-  "description":"Graylog Grok pattern for standard MySQL (default) slow query log format.",
-  "category":"Grok",
-  "inputs":[],
-  "streams":[],
-  "outputs":[],
-  "dashboards":[],
-  "grok_patterns":[
+  "v": 1,
+  "id": "a3f1368c-41f0-4696-8505-aa8974270d5e",
+  "rev": 1,
+  "name": "MySQL Slow Query Log GROK Pattern",
+  "summary": "Graylog GROK pattern to parse default MySQL Slow Query Log",
+  "description": "Graylog Grok pattern for standard MySQL (default) slow query log format.",
+  "vendor": "Andrea <andrea@fusilab.net>",
+  "url": "https://github.com/zionio/graylog_grok_mysqlslowquery.git",
+  "parameters": [],
+  "entities": [
     {
-      "name":"MYSQLSLOWQUERYLOG",
-      "pattern":"(?s) User@Host: (?:%{USERNAME:mysql_slow_clientuser})(?:%{GREEDYDATA}) @ (?:%{DATA:mysql_slow_clienthost}) \\[(?:%{DATA:mysql_slow_clientip}\\])%{SPACE}Id:%{SPACE}%{DATA:mysql_slow_id}(\\r|\\n)%{GREEDYDATA}Query_time: %{NUMBER:mysql_slow_querytime:float}(?:%{SPACE})Lock_time: %{NUMBER:mysql_slow_locktime:float}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_slow_rowssent:int}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_slow_rowsexamined:int}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_slow_timestamp}\\;"
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "d478b966-485c-4772-b74c-17818aabb2d6",
+      "data": {
+        "name": "MYSQLSLOWQUERYLOG",
+        "pattern": "(?s) Time:%{SPACE}%{TIMESTAMP_ISO8601:mysql_slow_querydate}%{GREEDYDATA}User@Host: (?:%{USERNAME:mysql_slow_clientuser})\\[(?:%{DATA:mysql_slow_clientdbname})\\] @ (?:%{DATA:mysql_slow_clienthost}) \\[(?:%{DATA:mysql_slow_clientip})\\]%{SPACE}Id:%{SPACE}%{DATA:mysql_slow_id}%{GREEDYDATA}Query_time: %{NUMBER:mysql_slow_querytime:float}(?:%{SPACE})Lock_time: %{NUMBER:mysql_slow_locktime:float}(?:%{SPACE})Rows_sent: %{NUMBER:mysql_slow_rowssent:int}(?:%{SPACE})Rows_examined: %{NUMBER:mysql_slow_rowsexamined:int}(?:%{SPACE})(?:%{GREEDYDATA})SET timestamp=%{NUMBER:mysql_slow_timestamp};(\\r|\\n)%{DATA:mysql_slow_query};"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "805da5ea-260f-48f6-92f4-ffd40a549bbc",
+      "data": {
+        "name": "SPACE",
+        "pattern": "\\s*"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "1da2f629-89f1-44a1-baa0-e068f624e852",
+      "data": {
+        "name": "GREEDYDATA",
+        "pattern": ".*"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "476f4d10-9453-4111-9546-de78a92ce531",
+      "data": {
+        "name": "NUMBER",
+        "pattern": "(?:%{BASE10NUM})"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "7853e4e4-791a-4b78-8433-6672d2e3b007",
+      "data": {
+        "name": "TIMESTAMP_ISO8601",
+        "pattern": "%{YEAR}-%{MONTHNUM}-%{MONTHDAY}[T ]%{HOUR}:?%{MINUTE}(?::?%{SECOND})?%{ISO8601_TIMEZONE}?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "4cae69e7-1ca6-447e-808f-c1fee5a75301",
+      "data": {
+        "name": "DATA",
+        "pattern": ".*?"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "871df36e-7c52-4ab9-9706-5bcd0d6b9e3a",
+      "data": {
+        "name": "USERNAME",
+        "pattern": "[a-zA-Z0-9._-]+"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "7d21cdb2-df22-4d65-83cb-0f85f8c3b346",
+      "data": {
+        "name": "BASE10NUM",
+        "pattern": "(?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\\.[0-9]+)?)|(?:\\.[0-9]+)))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "dda72535-6282-45d6-97ef-454368e0513d",
+      "data": {
+        "name": "YEAR",
+        "pattern": "(?>\\d\\d){1,2}"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "d36f6eb7-3dd5-4076-9802-289666650937",
+      "data": {
+        "name": "MONTHNUM",
+        "pattern": "(?:0?[1-9]|1[0-2])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "53efe393-40ca-49e7-9a5b-51b9b974c6a3",
+      "data": {
+        "name": "HOUR",
+        "pattern": "(?:2[0123]|[01]?[0-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "b7b6f7a3-e61d-4973-890c-d04210c83793",
+      "data": {
+        "name": "MINUTE",
+        "pattern": "(?:[0-5][0-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "aad8ee95-1560-4cfe-a59f-217effe6272f",
+      "data": {
+        "name": "SECOND",
+        "pattern": "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "a7c487fd-4820-442a-97bb-fcd2a1a409cb",
+      "data": {
+        "name": "ISO8601_TIMEZONE",
+        "pattern": "(?:Z|[+-]%{HOUR}(?::?%{MINUTE}))"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "grok_pattern",
+        "version": "1"
+      },
+      "id": "54d68069-dcb1-437a-b99c-8ad0b4fac669",
+      "data": {
+        "name": "MONTHDAY",
+        "pattern": "(?:(?:0[1-9])|(?:[12][0-9])|(?:3[01])|[1-9])"
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=3.3.8+e223f85"
+        }
+      ]
     }
   ]
 }
